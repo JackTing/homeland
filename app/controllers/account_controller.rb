@@ -1,5 +1,7 @@
 # Devise User Controller
 class AccountController < Devise::RegistrationsController
+  layout 'simple'
+
   before_action :require_no_sso!, only: [:new, :create]
 
   def new

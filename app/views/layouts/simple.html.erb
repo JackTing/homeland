@@ -14,7 +14,7 @@
   <%= raw Setting.custom_head_html %>
 </head>
 <body data-controller-name="<%= controller_name %>">
-  <div class="header">
+<!--   <div class="header">
     <nav class="navbar navbar-inverse navbar-fixed-top navbar-default">
       <div class="container">
         <div class="navbar-header">
@@ -25,18 +25,18 @@
         </div>
       </div>
     </nav>
-  </div>
+  </div> -->
 
   <div id="main" class="main-container container">
     <%= notice_message %>
     <%= yield %>
   </div>
 
-  <footer class="footer">
+<!--   <footer class="footer">
     <div class="container">
       <%= raw Setting.footer_html %>
     </div>
-  </footer>
+  </footer> -->
 
   <script type="text/javascript" data-turbolinks-eval="false">
     App.root_url = "<%= root_url %>";

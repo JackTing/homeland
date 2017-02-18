@@ -1,4 +1,6 @@
 class SessionsController < Devise::SessionsController
+  layout 'simple'
+  
   skip_before_action :set_locale, only: [:create]
   before_action :require_no_sso!, only: [:new, :create]
 

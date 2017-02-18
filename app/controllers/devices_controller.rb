@@ -1,6 +1,5 @@
 class DevicesController < ApplicationController
   before_action :authenticate_user!
-
   def destroy
     @device = current_user.devices.find(params[:id])
     @device.delete
