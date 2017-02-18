@@ -125,6 +125,13 @@ group :development do
   gem 'binding_of_caller'
   gem 'spring'
   gem 'spring-commands-rspec'
+
+  # 部署
+  gem 'mina'
+  gem 'highline',  require: false
+  gem 'mina-puma', require: false
+  gem 'mina-scp',  require: false
+
 end
 
 group :development, :test do
@@ -139,3 +146,9 @@ group :development, :test do
 
   gem 'codecov', require: false
 end
+# 其它模块
+# 程序商店
+# SpiritStore
+gem 'spirit_store',path: '../SpiritStore'
+
+

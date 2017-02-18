@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170217050010) do
+ActiveRecord::Schema.define(version: 20170218064636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "pg_stat_statements"
 
   create_table "actions", force: :cascade do |t|
     t.string   "action_type",   null: false
@@ -251,6 +250,70 @@ ActiveRecord::Schema.define(version: 20170217050010) do
     t.index ["deleted_at"], name: "index_sites_on_deleted_at", using: :btree
     t.index ["site_node_id"], name: "index_sites_on_site_node_id", using: :btree
     t.index ["url"], name: "index_sites_on_url", using: :btree
+  end
+
+  create_table "spirit_store_categories", force: :cascade do |t|
+    t.string   "name"
+    t.string   "icon"
+    t.boolean  "is_system"
+    t.integer  "parent_id"
+    t.integer  "lft",                        null: false
+    t.integer  "rgt",                        null: false
+    t.integer  "depth",          default: 0, null: false
+    t.integer  "children_count", default: 0, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["lft"], name: "index_spirit_store_categories_on_lft", using: :btree
+    t.index ["parent_id"], name: "index_spirit_store_categories_on_parent_id", using: :btree
+    t.index ["rgt"], name: "index_spirit_store_categories_on_rgt", using: :btree
+  end
+
+  create_table "spirit_store_orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "plugin_id"
+    t.integer  "quantity"
+    t.integer  "discount",                             default: 0
+    t.decimal  "price",        precision: 8, scale: 2, default: "0.0"
+    t.string   "trade_no"
+    t.string   "state",                                default: "opening"
+    t.integer  "expire_at"
+    t.string   "out_trade_no"
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
+  end
+
+  create_table "spirit_store_plugins", force: :cascade do |t|
+    t.integer  "category_id"
+    t.string   "title"
+    t.text     "body"
+    t.text     "body_html"
+    t.string   "author"
+    t.string   "support"
+    t.string   "version"
+    t.string   "icon"
+    t.string   "name"
+    t.decimal  "price",          default: "0.0"
+    t.boolean  "is_system"
+    t.boolean  "is_public"
+    t.integer  "publisher_id"
+    t.boolean  "approved"
+    t.string   "platforms"
+    t.integer  "use_day"
+    t.integer  "comments_count", default: 0
+    t.integer  "plugin_lib_id"
+    t.boolean  "run_in_root",    default: false
+    t.integer  "score",          default: 0
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  create_table "spirit_store_version_managers", force: :cascade do |t|
+    t.string   "version"
+    t.text     "body"
+    t.text     "body_html"
+    t.string   "source"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "team_users", force: :cascade do |t|
